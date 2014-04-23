@@ -626,13 +626,12 @@ void cframp3_show_playlist ()
 
 	guint n;
 	n=1;
-        char *line;
+    char *line;
 
 	g_print("crashing!! \n");
-    g_slist_length  
-	/n = g_slist_length(cframp3_file_list);
+	n = g_slist_length(cframp3_file_list);
 
-	line=g_slist_nth(cframp3_file_list, 0);
+	line=g_slist_nth_data(cframp3_file_list, 0);
 	g_print("list: %s len:  \n", line);
 
 	return;
@@ -652,7 +651,7 @@ int cframp3_playlist_get_nth (int n, char *c)
 		return -1;
 	}
 
-	s=g_slist_nth(cframp3_file_list, n);
+	s=g_slist_nth_data(cframp3_file_list, n);
 	len=strlen(s);
 	g_print("cframp3_playlist_get_nth: len: %i s: ***%s***  \n", len, s);
 	strncpy(c, s, len-2);
