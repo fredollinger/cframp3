@@ -1,3 +1,5 @@
 libcdaudio-dev
+libmagic-dev 
 libglib2.0-dev
-eel-2.0
+libsdl1.2-dev
+libsdl-mixer1.2-dev

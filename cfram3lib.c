@@ -25,7 +25,6 @@ void cframp3_getconfigfile(char *conf)
 // 1. framplayer.c: fram_sound_init()
 int cframp3lib_init()
 {
-	//cframp3_file_list = eel_string_list_new(TRUE);
 	printf("cfram3lib_init(): initializing \n");
 }
 
@@ -603,7 +602,6 @@ void cframp3_load_playlist (char *playlist)
 	GError *ger=NULL;
 
 	// clean up the list in case there are old files in here
-	//eel_string_list_free(cframp3_file_list);
 
 	fd = g_io_channel_new_file (list, "r", &ger);
 
@@ -614,7 +612,6 @@ void cframp3_load_playlist (char *playlist)
 		if (len > 0)
 		{
 			printf("song: %s len: %i \n", line, len);
-			//eel_string_list_insert (cframp3_file_list, line);
 			cframp3_file_list = g_slist_append(cframp3_file_list, line);
 		}
 
@@ -632,9 +629,10 @@ void cframp3_show_playlist ()
         char *line;
 
 	g_print("crashing!! \n");
-	n = eel_string_list_get_length(cframp3_file_list);
+    g_slist_length  
+	/n = g_slist_length(cframp3_file_list);
 
-	line=eel_string_list_nth(cframp3_file_list, 0);
+	line=g_slist_nth(cframp3_file_list, 0);
 	g_print("list: %s len:  \n", line);
 
 	return;
@@ -648,13 +646,13 @@ int cframp3_playlist_get_nth (int n, char *c)
 	char *s;
 	int len;
 	n=n-1;
-	if (n > eel_string_list_get_length(cframp3_file_list))
+	if (n > g_slist_length(cframp3_file_list))
 	{
 		printf("exceeded playlist length!! \n");
 		return -1;
 	}
 
-	s=eel_string_list_nth(cframp3_file_list, n);
+	s=g_slist_nth(cframp3_file_list, n);
 	len=strlen(s);
 	g_print("cframp3_playlist_get_nth: len: %i s: ***%s***  \n", len, s);
 	strncpy(c, s, len-2);
