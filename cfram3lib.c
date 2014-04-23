@@ -7,7 +7,7 @@
 #include "cframp4.h"
 #include <glib.h>
 
-EelStringList *cframp3_file_list;
+GSList *cframp3_file_list=NULL;
 
 // copies the path to the configfile to char conf
 void cframp3_getconfigfile(char *conf)
@@ -614,7 +614,8 @@ void cframp3_load_playlist (char *playlist)
 		if (len > 0)
 		{
 			printf("song: %s len: %i \n", line, len);
-			eel_string_list_insert (cframp3_file_list, line);
+			//eel_string_list_insert (cframp3_file_list, line);
+			cframp3_file_list = g_slist_append(cframp3_file_list, line);
 		}
 
 	}
