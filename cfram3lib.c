@@ -15,7 +15,7 @@ void cframp3_getconfigfile(char *conf)
   char *home = getenv("HOME");
 	char *fn = ".cframp3";
   size_t size = strlen(home) + strlen(fn) + 2;;
-  char *path = (char *) xmalloc (size);
+  char *path = (char *) malloc (size);
 	sprintf(path, "%s/%s", home, fn);
 	strcpy(conf, path);
 }
@@ -35,8 +35,7 @@ void cframp3lib_quit(void)
 
 int cframp3lib_getowd(char *dir)
 {
-
-        char *path = (char *) xmalloc (1000);
+  char *path = (char *) malloc (1000);
 	cframp3_getconfigfile(path);
 	FILE *fi;
   	fi = fopen (path, "r");
@@ -57,7 +56,7 @@ int cframp3lib_getowd(char *dir)
 int cframp3lib_writecwd(void)
 {
 	printf("cframp3lib_writecwd(): called \n");
-        char *path = (char *) xmalloc (1000);
+  char *path = (char *) malloc (1000);
 	cframp3_getconfigfile(path);
 
 	printf("cframp3lib_writecwd(): got path \n");
@@ -65,7 +64,7 @@ int cframp3lib_writecwd(void)
 	int songnum = frameng_getsongnum();
 	printf("cframp3lib_writecwd(): song num = %i \n", songnum);
        	size_t size = strlen(pwd) + 255;
-        char *str = (char *) xmalloc (size);
+        char *str = (char *) malloc (size);
 	printf("cframp3lib_writecwd(): malloc worked \n");
 	//sprintf(path, "%s/%s", home, fn);
 	sprintf(str, "%s\n%i", pwd, songnum);
@@ -238,7 +237,7 @@ int fram_getcwd(char* p)
      
        while (1)
          {
-           char *buffer = (char *) xmalloc (size);
+           char *buffer = (char *) malloc (size);
            if (getcwd (buffer, size) == buffer)
 		   {
 			//printf("%s \n", buffer);
@@ -261,7 +260,7 @@ void fram_pwd(void)
      
        while (1)
          {
-           char *buffer = (char *) xmalloc (size);
+           char *buffer = (char *) malloc (size);
            if (getcwd (buffer, size) == buffer)
 		   {
 			printf("%s \n", buffer);

@@ -7,6 +7,8 @@
 // I AM REPLACING THIS FUNCTION THEREFORE THIS IS DEPRECATED DON'T
 // USE THIS CODE !!!
 
+#ifndef CFRAMP3_H
+#define CFRAMP3_H
 #include <string>
 #include <string.h>
 #include <iostream.h>
@@ -27,3 +29,4 @@ songclass::songclass()
 {
 }
 */
+#endif // CFRAMP3_H
