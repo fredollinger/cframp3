@@ -1,0 +1,15 @@
+Source: cframp3
+Section: unknown
+Priority: optional
+Maintainer: Frederick Ollinger <follinge@gmail.com>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://git.debian.org/collab-maint/cframp3.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/cframp3.git;a=summary
+
+Package: cframp3
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: A command line music player.
+ A music player which has a ui based on the bash shell.
