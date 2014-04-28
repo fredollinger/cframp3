@@ -11,20 +11,14 @@ WHOLE_VERSION=MAJOR_VERSION + "." + MINOR_VERSION + "." + MICRO_VERSION
 DEBIAN_VERSION=MAJOR_VERSION + "." + MINOR_VERSION + "." + MICRO_VERSION + "-" + UBUNTU_VERSION 
 APP_DIR="ktomgirl" + "-" + WHOLE_VERSION
 BUILD='builddir'
-#CMAKE="cmake ../src"
 TARBALL="#{APP}_#{DEBIAN_VERSION}.orig.tar.gz"
 LINKPATH="#{APP}-#{DEBIAN_VERSION}"
-
-CLEAN.include("*.deb", "*.changes", "*.dsc", "#{APP}_#{DEBIAN_VERSION}.debian.tar.gz", "src/obj-x86_64-linux-gnu", "builddir", "#{TARBALL}", "#{LINKPATH}")
+#CLEAN.include("*.deb", "*.changes", "*.dsc", "#{APP}_#{DEBIAN_VERSION}.debian.tar.gz", "src/obj-x86_64-linux-gnu", "builddir", "#{TARBALL}", "#{LINKPATH}")
 
 directory 'builddir'
 
 desc "build it"
-task :default => :ui do
-end
-
-desc "build it"
-task :build => :ui do
+task :default => :deb do
 end
 
 desc "show errors"
@@ -34,24 +28,19 @@ end
 
 desc "test"
 task :test => :ui do
-	sh "cd #{BUILD} && ./ktomgirl"
+	sh "./#{APP}"
 end
 
-desc "build it"
-task :ui => 'builddir' do
-	sh "cd builddir && rm -f ktomgirl && make -j3 2>err"
-end
-
-desc "Upload ppa to ubuntu"
-task :ppa  do
+#desc "Upload ppa to ubuntu"
+#task :ppa  do
 	#puts "dput ppa:follinge/precise-kde4-unasked-ppa libktomgirl_0.0.9-1_amd64.changes"
-end
+#end
 
-desc "Put in a local repository"
-task :repo  do
-	sh "cp *.deb #{REPO}"
-	sh "dpkg-scanpackages /dev/null #{REPO} | gzip -9c > #{REPO}/Packages"
-end
+#desc "Put in a local repository"
+#task :repo  do
+#	sh "cp *.deb #{REPO}"
+#	sh "dpkg-scanpackages /dev/null #{REPO} | gzip -9c > #{REPO}/Packages"
+#end
 
 desc "Recreate original source package (with no debian dir)"
 task :orig  do
@@ -75,7 +64,7 @@ task :deps do
 end
 
 desc "build debian package"
-task :deb => [:clean, :tgz] do
+task :deb => :tgz do
 	sh "cd ../#{LINKPATH} && debuild -i -us -uc -b -d"
 end
 
@@ -84,4 +73,4 @@ task :tgz do
 	sh "cd .. && rm -f #{LINKPATH} && ln -s #{APP} #{LINKPATH} && tar --exclude debian -chzvf #{TARBALL} #{LINKPATH}"
 end
 
-# Sun Oct 27 16:20:25 PDT 2013
+# Mon Apr 28 09:19:17 PDT 2014
