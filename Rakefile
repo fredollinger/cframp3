@@ -11,8 +11,7 @@ WHOLE_VERSION=MAJOR_VERSION + "." + MINOR_VERSION + "." + MICRO_VERSION
 DEBIAN_VERSION=MAJOR_VERSION + "." + MINOR_VERSION + "." + MICRO_VERSION + "-" + UBUNTU_VERSION 
 APP_DIR="ktomgirl" + "-" + WHOLE_VERSION
 BUILD='builddir'
-#CMAKE="cmake -DQT_QMAKE_EXECUTABLE=/usr/bin/qmake-qt4 -DCMAKE_INSTALL_PREFIX=$(kde4-config --prefix) .."
-CMAKE="cmake ../src"
+#CMAKE="cmake ../src"
 TARBALL="#{APP}_#{DEBIAN_VERSION}.orig.tar.gz"
 LINKPATH="#{APP}-#{DEBIAN_VERSION}"
 
@@ -36,11 +35,6 @@ end
 desc "test"
 task :test => :ui do
 	sh "cd #{BUILD} && ./ktomgirl"
-end
-
-desc "Create build dir and setup"
-task 'builddir' do
-	sh "mkdir -p #{BUILD} && cd #{BUILD} && #{CMAKE}"
 end
 
 desc "build it"

@@ -46,8 +46,7 @@ kill:
 	rm -fv /tmp/file*
 	killall mplayer
 install:
-	mkdir -p $(DESTDIR)/usr/bin
-	cp -v cframp3 $(DESTDIR)/usr/bin
+	cp -v cframp3 ~/bin/
 
 issong: issongtest.o cfram3lib.o 
 	$(CPP) -o issong $(CFLAGS) cfram3lib.o issongtest.o 
