@@ -1,0 +1,11 @@
+1. Make a debian package
+
+2. Code cleanup 
+
+a. Remove xmalloc
+
+b. Fix many other monstrosities
+
+3. libgroove support
+
+4. plugin support - could we have libsdl _and_ libgroove backends via 
