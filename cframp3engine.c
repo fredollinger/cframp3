@@ -103,7 +103,7 @@ void *frameng_engineon(void *ptr)
 
 // increment the song number
 // going to be used for the next song feature
-int frameng_inc_song_num(i)
+int frameng_inc_song_num(int i)
 {
 
 	printf("frameng_inc_song_num frameng_mode = %i \n", frameng_mode);
@@ -117,11 +117,11 @@ int frameng_inc_song_num(i)
 
 	if (NEXT_SONG_PLAY == frameng_nsong)
 	{
-		int i;
-		i = frameng_nsong;
+		int n;
+		n = frameng_nsong;
 		frameng_nsong = 0;
-		printf("next song mode: %i\n", i);
-		return i;
+		printf("next song mode: %i\n", n);
+		return n;
 	}
 
 	// if there is no next song then we should just increment the song

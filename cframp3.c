@@ -14,7 +14,7 @@ char *glob_song; // contains the song name
 int glob_run_engine;  //play the song?
 int glob_num; // song number
 int glob_num = 1; // default so that if we call on this before choosing a song we won't crash
-char *volcmd="/usr/local/bin/umix"; 
+char *volcmd="/usr/bin/alsamixer"; 
 
 void fram_show_lyrics()
 {
@@ -117,6 +117,7 @@ int main(int argc, char *argv[])
 
 	// get the old working directory and change it 
 	char *fram_confile = (char *) malloc (1000);
+	//fram_confile = (char *) malloc (1000);
 	cframp3lib_getowd(fram_confile);
 	err = chdir(fram_confile);
 
@@ -309,7 +310,8 @@ first, my_string, sizeof(first));
 
 		if (0 == strcmp (first, "u"))
 		{
-			char *fram_confile = (char *) malloc (1000);
+			//char *fram_confile = (char *) malloc (1000);
+			fram_confile = (char *) malloc (1000);
 			//cframp3_getconfigfile(fram_confile);
 			cframp3lib_getowd(fram_confile);
 			printf("owd: %s \n", fram_confile);
