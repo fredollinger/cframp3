@@ -30,9 +30,6 @@ test:
 clean:
 	rm -rf *.o doc autoscan.log autom4te.cache config.h config.log config.status $(MAIN).o $(MAIN) issong
 
-realclean:
-	make clean
-	rm -f Makefile
 edit:
 	vim $(MAIN).c 
 style:
