@@ -6,6 +6,7 @@
 
 #include "cframp4.h"
 #include <glib.h>
+#include <errno.h>
 
 GSList *cframp3_file_list=NULL;
 
@@ -169,6 +170,9 @@ int ismp3(char *s)
 	FILE *fi;
 	int c;
 	fi = fopen(s, "r");
+    
+    if ( 0 != errno) return FRAM_ERR;
+
 	c = fgetc (fi);
 	if (73 != c)
 	{
@@ -196,61 +200,54 @@ int ismp3(char *s)
 // 2. fram_ls()
 // 3. fram_ls_orig()
 // 4. get_song_name()
-int issong(char *s)
-{
-
+int issong(char *s){
 	int i;
 	struct stat buff;
 
 	i = lstat(s,&buff);
 
-	if (0 != S_ISDIR (buff.st_mode))
-	{
+	if (S_ISDIR (buff.st_mode))
 		return FRAM_DIR;
-	}
+
+	if (!S_ISREG (buff.st_mode))
+        return FRAM_NULL;
 
 	i = ismp3(s);
 	if (FRAM_MP3 == i)
-	{
 		return FRAM_MP3;
-	}	
+
 	i = isogg(s);
+
 	if (FRAM_OGG == i)
-	{
 		return FRAM_OGG;
-	}	
 	i = ismpeg(s);
+
 	if (FRAM_MPEG == i)
-	{
 		return FRAM_MPEG;
-	}
+
 	return FRAM_NULL;
 }
 
 // actually return the pwd
-int fram_getcwd(char* p)
-{
+int fram_getcwd(char* p){
     	// *p is the working directory 
        size_t size = 100;
 	   int errno;
 	   int range = 512000 ;
      
-       while (1)
-         {
+       while (1){
            char *buffer = (char *) malloc (size);
-           if (getcwd (buffer, size) == buffer)
-		   {
-			//printf("%s \n", buffer);
-			//printf("freeing buffer! \n");
-           		free (buffer);
-			return 0;
+           if (getcwd (buffer, size) == buffer){
+          	   free (buffer);
+			   return 0;
 		   }
            if (errno != range)
-             return 0;
+                return 0;
            size *= 2;
          }
      	
 }
+
 void fram_pwd(void)
 {
      
@@ -485,7 +482,6 @@ int fram_ls()
     struct dirent **eps;
     int n;
 
-    //n = scandir ("./", &eps, fram_one, alphasort);
     n = scandir ("./", &eps, 0, alphasort);
 
     if (n < 0)
@@ -504,38 +500,31 @@ int fram_ls()
     int lcounter = 1;  //loop counter
     int mychar=0;
 
-
-    while(cnt < n)
-    {
-        while(cnt < n && lcounter < counter2)
-        {
+    while(cnt < n){
+        while(cnt < n && lcounter < counter2){
             char *copys;
             copys=eps[cnt]->d_name;
             ans = issong(copys);
 			
-            if (ans > 0)
-            {
+            if (ans > 0){
                 printf("%i: %s\n", counter, copys);
-		counter++;
-		lcounter++;
+		        counter++;
+		        lcounter++;
             }
 
-            if (ans == FRAM_DIR)
-            {
-	        printf("dir: %s\n", copys);
-		lcounter++;
+            if (ans == FRAM_DIR){
+	            printf("dir: %s\n", copys);
+		        lcounter++;
             }
 	    cnt++;
-	}
+	  } // END while (cnt < n && lcounter < counter2)
 
-         counter2 = lcounter + pagesize;
+     counter2 = lcounter + pagesize;
 	 mychar = getc(stdin);
 	 if (113 == mychar)
-	 {
 	     cnt = n + 1;
-         }
-    }
-		
+    } // END while(cnt < n)
+
     printf("freeing eps! \n");
     free(eps);
     return 0;

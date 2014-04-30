@@ -1,7 +1,7 @@
 /* $Id: cframp3.c,v 1.68 2006/12/28 01:07:33 bl0rg Exp $
  * cframp3 - command line mp3 front-end in C++
  * rewritten from the perl version framp3
- * both by Fred Ollinger (follinge@diadig.com)
+ * both by Fred Ollinger (follinge@gmail.com)
 */ 
 
 #include "cframp4.h"
@@ -386,4 +386,4 @@ first, my_string, sizeof(first));
 return 0;
 }
 
-/* $Id: cframp3.c,v 1.68 2006/12/28 01:07:33 bl0rg Exp $ */
+// Wed Apr 30 09:40:00 PDT 2014
