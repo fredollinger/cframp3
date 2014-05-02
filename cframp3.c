@@ -147,8 +147,7 @@ int main(int argc, char *argv[])
 		strncpy (first, my_string, 1);
 		first[1]='\0';
 		ifirst = strtoul(my_string, &tail, 0);
-		printf ("ifirst: %i  first: %s mystring: %s %i \n", ifirst,
-first, my_string, sizeof(first));
+		//printf ("ifirst: %i  first: %s mystring: %s %i \n", ifirst, first, my_string, sizeof(first));
 
 		if (0 == strcmp (first, "?"))
 		{
@@ -260,7 +259,7 @@ first, my_string, sizeof(first));
 			*/
 				nfirst = strtoul(tmp_string, &tail, 0);
 	
-				printf("adding track ***%i*** onto the queue\n", nfirst);
+				//printf("adding track ***%i*** onto the queue\n", nfirst);
 				// uncomment when this is fixed
 				frameng_setnextsongnum(nfirst);
 			}

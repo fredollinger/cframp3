@@ -599,7 +599,7 @@ void cframp3_load_playlist (char *playlist)
 
 		if (len > 0)
 		{
-			printf("song: %s len: %i \n", line, len);
+			printf("song: %s len: %i \n", line, (int)len);
 			cframp3_file_list = g_slist_append(cframp3_file_list, line);
 		}
 

@@ -12,7 +12,8 @@ TFLAGS=-lpthread
 PCREFLAGS=`pcre-config --libs`
 CDAUFLAGS=`libcdaudio-config --cflags --libs`
 GLIBFLAGS=`pkg-config --cflags --libs glib-2.0`
-CFLAGS=-lreadline -lpthread -lhistory  -lmagic -ggdb -Wshadow -O3 -Werror $(TFLAGS) $(PCREFLAGS) $(CDAUFLAGS) $(GLIBFLAGS) $(SDLCFLAGS)  $(SDLLFLAGS)
+#CFLAGS=-lreadline -lpthread -lhistory  -lmagic -ggdb -Wshadow -O3 -Werror $(TFLAGS) $(PCREFLAGS) $(CDAUFLAGS) $(GLIBFLAGS) $(SDLCFLAGS)  $(SDLLFLAGS)
+CFLAGS=-lreadline -lpthread -lhistory  -lmagic -ggdb -Wshadow -O3 $(TFLAGS) $(PCREFLAGS) $(CDAUFLAGS) $(GLIBFLAGS) $(SDLCFLAGS)  $(SDLLFLAGS)
 OBJS=cfram3lib.o framplayer.o cframp3engine.o cframp3getc.o
 
 cframp3: cfram3lib.o framplayer.o cframp3engine.o cframp3getc.o
@@ -43,7 +44,7 @@ kill:
 	rm -fv /tmp/file*
 	killall mplayer
 install:
-	cp -v cframp3 ~/bin/
+	cp -v cframp3 /usr/bin
 
 issong: issongtest.o cfram3lib.o 
 	$(CPP) -o issong $(CFLAGS) cfram3lib.o issongtest.o 
