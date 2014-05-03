@@ -127,7 +127,6 @@ int isogg(char *s)
 	return FRAM_OGG;
 }
 
-
 // CALLERS:
 // 1. cfram3lib.c: issong()
 int ismpeg(char *s)

@@ -1,8 +1,8 @@
 /* $Id: framplayer.c,v 1.27 2006/12/28 01:07:33 bl0rg Exp $
  * framplayer.c - a lib to play songs
- * cframp3 - command line mp3 front-end in C++
+ * cframp3 - command line mp3 front-end in C
  * rewritten from the perl version framp3
- * both by Fred Ollinger (follinge@diadig.com)
+ * both by Fred Ollinger (follinge@gmail.com)
  */ 
 
 #include "framplayer.h"

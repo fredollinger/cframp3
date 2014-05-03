@@ -15,8 +15,6 @@
 //#include <magic.h>
 #include <stdio.h>
 #include <string.h>
-#include <dirent.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/stat.h>
@@ -26,7 +24,6 @@
 #include <wchar.h>
 #include <pcre.h>
 #include <cdaudio.h>
-//#include "SDL_thread.h"
 
 #define TRUE 1
 #define FALSE -1
