@@ -12,8 +12,8 @@ TFLAGS=-lpthread
 PCREFLAGS=`pcre-config --libs`
 CDAUFLAGS=`libcdaudio-config --cflags --libs`
 GLIBFLAGS=`pkg-config --cflags --libs glib-2.0`
-#CFLAGS=-lreadline -lpthread -lhistory  -lmagic -ggdb -Wshadow -O3 -Werror $(TFLAGS) $(PCREFLAGS) $(CDAUFLAGS) $(GLIBFLAGS) $(SDLCFLAGS)  $(SDLLFLAGS)
-CFLAGS=-lreadline -lpthread -lhistory  -lmagic -ggdb -Wshadow -O3 $(TFLAGS) $(PCREFLAGS) $(CDAUFLAGS) $(GLIBFLAGS) $(SDLCFLAGS)  $(SDLLFLAGS)
+#CFLAGS=-lreadline -lpthread -lhistory  -lmagic -ggdb -Wshadow -O3 $(TFLAGS) $(PCREFLAGS) $(CDAUFLAGS) $(GLIBFLAGS) $(SDLCFLAGS)  $(SDLLFLAGS)
+CFLAGS=-lreadline -lpthread -lhistory  -lmagic -ggdb -Wshadow -O3 $(TFLAGS) $(PCREFLAGS) $(CDAUFLAGS) $(GLIBFLAGS) $(SDLCFLAGS)  $(SDLLFLAGS) -lgroove -DGROOVE
 OBJS=cfram3lib.o framplayer.o cframp3engine.o cframp3getc.o
 
 cframp3: cfram3lib.o framplayer.o cframp3engine.o cframp3getc.o
@@ -39,7 +39,7 @@ style:
 documentation:
 	doxygen $(MAIN).cfg
 kill:
-	ps aux | grep cframp3
+	ps aux | grep )framp3
 	killall cframp3
 	rm -fv /tmp/file*
 	killall mplayer
@@ -52,3 +52,9 @@ issong: issongtest.o cfram3lib.o
 
 hello:
 				$(CC) -o hello -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include  -lglib-2.0 hello.c
+
+groove: cfram3lib.o cframp3engine.o cframp3getc.o
+				rm -f framplayer.o
+				$(CC) $(CFLAGS) -DUSE_GROOVE -c framgroove.c
+				$(CC) $(CFLAGS) -DUSE_GROOVE -c framplayer.c
+				$(CPP) -o $(MAIN) $(MAIN).c $(OBJS) $(CFLAGS)  -DUSE_GROOVE

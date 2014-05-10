@@ -6,6 +6,10 @@
 
 #include "cframp4.h"
 
+#ifdef USE_GROOVE
+#include <groove/groove.h>
+#endif // USE_GROOVE
+
 // FUNCTION DECLARATIONS
 void *fram_engine( void *ptr );
 
@@ -82,6 +86,13 @@ void fram_help()
 
 int main(int argc, char *argv[])
 {
+  #ifdef USE_GROOVE
+  printf("groovy\n");
+  groove_init();
+  atexit(groove_finish);
+  groove_set_logging(GROOVE_LOG_INFO);
+  #endif // USE_GROOVE
+
 	glob_run_engine = 0;  // don't start with a song playing
 	char *my_string; 
 	char song[256];
@@ -384,5 +395,4 @@ int main(int argc, char *argv[])
 	}
 return 0;
 }
-
-// Wed Apr 30 09:40:00 PDT 2014
+// Sat May 10 11:43:33 PDT 2014

@@ -8,6 +8,10 @@
 #include <glib.h>
 #include <errno.h>
 
+#ifdef FRAM_GROOVE
+#include "fram_groove.h"
+#endif
+
 GSList *cframp3_file_list=NULL;
 
 // copies the path to the configfile to char conf

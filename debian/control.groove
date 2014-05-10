@@ -2,7 +2,7 @@ Source: cframp3
 Section: unknown
 Priority: optional
 Maintainer: Frederick Ollinger <follinge@gmail.com>
-Build-Depends: debhelper (>= 8.0.0)
+Build-Depends: debhelper (>= 8.0.0), libgroovefingerprinter-dev, libgroove-dev,libcdaudio-dev, libmagic-dev, libglib2.0-dev, libsdl1.2-dev
 Standards-Version: 3.9.4
 Homepage: https://github.com/fredollinger/cframp3/commits?author=fredollinger
 #Vcs-Git: git://git.debian.org/collab-maint/cframp3.git
@@ -10,6 +10,6 @@ Homepage: https://github.com/fredollinger/cframp3/commits?author=fredollinger
 
 Package: cframp3
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libgroove-dev,libcdaudio-dev, libmagic-dev, libglib2.0-dev, libsdl1.2-dev
+Depends: ${shlibs:Depends}, ${misc:Depends}, libgroovefingerprinter, libgroove, libcdaudio, libmagic, libglib2.0, libsdl1.2
 Description: A command line music player.
  A music player which has a ui based on the bash shell.
