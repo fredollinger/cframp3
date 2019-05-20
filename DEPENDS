@@ -1,5 +1,1 @@
-libcdaudio-dev
-libmagic-dev 
-libglib2.0-dev
-libsdl1.2-dev
-libsdl-mixer1.2-dev
+libcdaudio-dev libmagic-dev libglib2.0-dev libsdl1.2-dev libsdl-mixer1.2-dev libgroove-dev
